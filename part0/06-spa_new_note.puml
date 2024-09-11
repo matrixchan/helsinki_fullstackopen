@@ -1,0 +1,20 @@
+@startuml
+    participant browser
+    participant server
+
+    Note right of browser: User writes a new note and clicks the save button
+
+    Note right of browser: The browser executes the event handler that:
+    Note right of browser: 1. Adds the new note to the notes list
+    Note right of browser: 2. Redraws the note list on the page
+    Note right of browser: 3. Sends the new note to the server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note left of server: Server adds the new note to its data
+    server-->>browser: 201 Created
+    deactivate server
+
+    Note right of browser: The browser logs the response to the console
+
+@enduml

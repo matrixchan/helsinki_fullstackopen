@@ -1,0 +1,55 @@
+@startuml
+
+participant browser
+participant server
+
+Note right of browser: User writes a new note and clicks the save button
+
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+activate server
+server-->browser: 302 Found
+deactivate server
+
+note over browser
+Browser receives HTTP 302 response,
+and automatically follows the redirect
+to the new URL provided in the Location header.
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/exampleapp/notes
+activate server
+server-->browser: HTML Document
+deactivate server
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+activate server
+server-->browser: main.css
+deactivate server
+
+note over browser
+Browser loads the main.css file to apply
+the styles and layout rules defined for the page.
+This step is crucial for rendering the page correctly.
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+activate server
+server-->browser: main.js
+deactivate server
+
+note over browser
+Browser starts executing js-code
+that requests JSON data from server.
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+activate server
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+deactivate server
+
+note over browser
+Browser executes the event handler
+that renders notes to display.
+end note
+
+@enduml
