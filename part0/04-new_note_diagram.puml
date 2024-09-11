@@ -16,7 +16,7 @@ and automatically follows the redirect
 to the new URL provided in the Location header.
 end note
 
-browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/exampleapp/notes
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
 activate server
 server-->browser: HTML Document
 deactivate server
